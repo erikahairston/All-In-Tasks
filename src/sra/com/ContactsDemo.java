@@ -33,7 +33,7 @@ import android.widget.TextView;
 	}
 	
 	public void saveGroup(View view){
-		
+		setContentView(R.layout.add_tasks);
 	}
 	public void contact(View v){
 		setContentView(R.layout.pick_contact_button_screen);
