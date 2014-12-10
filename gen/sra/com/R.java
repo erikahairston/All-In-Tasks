@@ -22,11 +22,12 @@ public final class R {
         public static final int group_name=0x7f050005;
         public static final int makenewgroup=0x7f050003;
         public static final int output=0x7f050004;
+        public static final int printOut=0x7f05000c;
         public static final int textView1=0x7f050001;
         public static final int textView2=0x7f050002;
         public static final int textView3=0x7f050009;
         public static final int textView4=0x7f05000b;
-        public static final int xBtnContacts=0x7f05000c;
+        public static final int xBtnContacts=0x7f05000d;
     }
     public static final class layout {
         public static final int add_tasks=0x7f030000;
