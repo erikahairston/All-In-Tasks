@@ -33,7 +33,7 @@ import android.widget.TextView;
 	}
 	
 	public void saveGroup(View view){
-		Button Save = null;
+		
 		final EditText group_name;
 		final EditText current_date;
 		final EditText due_date;
