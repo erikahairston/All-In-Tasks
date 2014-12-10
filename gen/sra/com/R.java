@@ -14,8 +14,8 @@ public final class R {
         public static final int icon=0x7f020000;
     }
     public static final class id {
+        public static final int Save=0x7f050008;
         public static final int attendees=0x7f050005;
-        public static final int button1=0x7f050008;
         public static final int current_date=0x7f050003;
         public static final int due_date=0x7f050004;
         public static final int group_name=0x7f050002;
