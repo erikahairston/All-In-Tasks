@@ -28,6 +28,13 @@ import android.widget.TextView;
 		setContentView(R.layout.welcome_screen);
 		
 	}
+	public void makeNewGroup(View view){
+	    setContentView(R.layout.new_group);
+	}
+	
+	public void saveGroup(View view){
+		
+	}
 	public void contact(View v){
 		setContentView(R.layout.pick_contact_button_screen);
 		mBtnContacts = (Button) findViewById(R.id.xBtnContacts);
