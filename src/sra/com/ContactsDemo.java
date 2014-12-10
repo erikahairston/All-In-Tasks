@@ -61,10 +61,10 @@ import android.widget.TextView;
 	            String DueDate = due_date.getText().toString();
 	            String NumAttendees = num_attendees.getText().toString();
 	            testPrint= (TextView)findViewById(R.id.printOut);
-	            testPrint.setText("Welcome " + GroupName);
+	            testPrint.setText("Welcome " + GroupName);  //need to print this home screen
 	    	}
 	    });
-		//setContentView(R.layout.add_tasks);
+		//setContentView(R.layout.add_tasks); (need to re-implement this to a new button)
 	}
 	public void contact(View v){
 		setContentView(R.layout.pick_contact_button_screen);
