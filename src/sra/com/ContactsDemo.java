@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.content.ContentResolver;
+import android.widget.TextView;
 
 @SuppressWarnings("deprecation")
 @SuppressLint("NewApi") public class ContactsDemo extends Activity implements OnClickListener {
@@ -19,13 +21,12 @@ import android.widget.Button;
 	private final int PICK = 1;
 
 	/** Called when the activity is first created. */
-	
-	//public void onCreate(Bundle savedInstanceState) {
-		//super.onCreate(savedInstanceState);
-		public void Contacts(){
-			setContentView(R.layout.main);
-			mBtnContacts = (Button) findViewById(R.id.xBtnContacts);
-			mBtnContacts.setOnClickListener(this);
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.welcome_screen);
+		mBtnContacts = (Button) findViewById(R.id.xBtnContacts);
+		mBtnContacts.setOnClickListener(this);
 	}
 
 	@Override
@@ -47,36 +48,47 @@ import android.widget.Button;
 				Uri contactData = data.getData();
 				Cursor c = managedQuery(contactData, null, null, null, null);
 				if (c.moveToFirst()) {
-					String name = c.getString(c.getColumnIndexOrThrow(People.NAME));
-					// TODO Whatever you want to do with the selected contact
-					// name.
-					Uri uri = data.getData();
-					Cursor cursor=managedQuery(uri, null, null, null, null);
-					String phoneNumber = null;
-					while (cursor.moveToNext()) { 
-					String name1 = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-					String contactId = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID)); 
-					Log.d("HELLO : ", " "+contactId); 
-					String hasPhone = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER)); 
-					Log.d("HELLO : ", " "+hasPhone); 
-					if ((Integer.parseInt(hasPhone)==1 )){ 
-					Log.d("HELLO : ", " IN if"); 
-					Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-					null, 
-					ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ contactId, 
-					null, null); 
-					while (phones.moveToNext()) { 
-					phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)); 
-					System.out.println(phoneNumber);
-					} 
-			
-					} 
-					Log.d("HELLO : ", " "+name); 
-					Log.d("HELLO : ", " "+phoneNumber); 
-					}
+					fetchContacts();
 				}
 			}
-			break;
+		break;
 		}
-	}
+		}
+					// TODO Whatever you want to do with the selected contact
+					// name.
+	
+					public static void fetchContacts() {
+						        String phoneNumber = null;
+						        String email = null;
+						        Uri CONTENT_URI = ContactsContract.Contacts.CONTENT_URI;
+						        String _ID = ContactsContract.Contacts._ID;
+						        String DISPLAY_NAME = ContactsContract.Contacts.DISPLAY_NAME;
+						        String HAS_PHONE_NUMBER = ContactsContract.Contacts.HAS_PHONE_NUMBER;
+						        Uri PhoneCONTENT_URI = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
+						        String Phone_CONTACT_ID = ContactsContract.CommonDataKinds.Phone.CONTACT_ID;
+						        String NUMBER = ContactsContract.CommonDataKinds.Phone.NUMBER;
+						        StringBuffer output = new StringBuffer();
+						        System.out.println(NUMBER);
+						        System.out.println(DISPLAY_NAME);
+						      /*  Cursor cursor = ContentResolver.query(CONTENT_URI, null,null, null, null); 
+						        // Loop for every contact in the phone
+						        if (cursor.getCount() > 0) {
+						            while (cursor.moveToNext()) {
+						                String contact_id = cursor.getString(cursor.getColumnIndex( _ID ));
+						                String name = cursor.getString(cursor.getColumnIndex( DISPLAY_NAME ));
+						                int hasPhoneNumber = Integer.parseInt(cursor.getString(cursor.getColumnIndex( HAS_PHONE_NUMBER )));
+						                if (hasPhoneNumber > 0) {
+						                    output.append("\n First Name:" + name);
+						                    // Query and loop for every phone number of the contact
+						                    Cursor phoneCursor = contentResolver.query(PhoneCONTENT_URI, null, Phone_CONTACT_ID + " = ?", new String[] { contact_id }, null);
+						                    while (phoneCursor.moveToNext()) {
+						                        phoneNumber = phoneCursor.getString(phoneCursor.getColumnIndex(NUMBER));
+						                        output.append("\n Phone number:" + phoneNumber);
+						                        */
+						                    
+						                
+						            
+						       
+					
+		}
 }
