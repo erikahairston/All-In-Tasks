@@ -24,7 +24,12 @@ import android.widget.TextView;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+	//public void Contacts(){
 		setContentView(R.layout.welcome_screen);
+		
+	}
+	public void contact(View v){
+		setContentView(R.layout.pick_contact_button_screen);
 		mBtnContacts = (Button) findViewById(R.id.xBtnContacts);
 		mBtnContacts.setOnClickListener(this);
 	}
