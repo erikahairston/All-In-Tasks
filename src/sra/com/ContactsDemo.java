@@ -19,12 +19,13 @@ import android.widget.Button;
 	private final int PICK = 1;
 
 	/** Called when the activity is first created. */
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
-		mBtnContacts = (Button) findViewById(R.id.xBtnContacts);
-		mBtnContacts.setOnClickListener(this);
+	
+	//public void onCreate(Bundle savedInstanceState) {
+		//super.onCreate(savedInstanceState);
+		public void Contacts(){
+			setContentView(R.layout.main);
+			mBtnContacts = (Button) findViewById(R.id.xBtnContacts);
+			mBtnContacts.setOnClickListener(this);
 	}
 
 	@Override
