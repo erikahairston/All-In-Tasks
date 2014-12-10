@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.content.ContentResolver;
 import android.widget.TextView;
 
@@ -22,17 +23,35 @@ import android.widget.TextView;
 
 	/** Called when the activity is first created. */
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) { //set to home screen when app starts
 		super.onCreate(savedInstanceState);
-	//public void Contacts(){
 		setContentView(R.layout.welcome_screen);
 		
 	}
-	public void makeNewGroup(View view){
-	    setContentView(R.layout.new_group);
+	public void makeNewGroup(View view){ // from the home screen when you click on Make New Group Button
+		setContentView(R.layout.new_group);
 	}
 	
 	public void saveGroup(View view){
+		Button Save = null;
+		final EditText group_name;
+		final EditText current_date;
+		final EditText due_date;
+		final EditText attendees;
+			    
+		group_name = (EditText)findViewById(R.id.group_name);
+	    
+	    current_date = (EditText)findViewById(R.id.current_date);
+	    
+	    due_date = (EditText)findViewById(R.id.due_date);
+	    
+	    attendees = (EditText)findViewById(R.id.attendees);
+
+	                Log.v("EditText", group_name.getText().toString());
+	                Log.v("EditText", current_date.getText().toString());
+	                Log.v("EditText", due_date.getText().toString());
+	                Log.v("EditText", attendees.getText().toString());
+	           
 		setContentView(R.layout.add_tasks);
 	}
 	public void contact(View v){
