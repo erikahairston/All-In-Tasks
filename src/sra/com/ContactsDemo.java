@@ -40,6 +40,10 @@ import android.widget.TextView;
 	public void groupPage (View view){ // from the home screen when you click on Make New Group Button
 			setContentView(R.layout.group);
 	}
+			
+	public void Home (View view){ // from the home screen when you click on Make New Group Button
+				setContentView(R.layout.welcome_screen);
+	}
 
 	public void saveGroup(View view){
 
