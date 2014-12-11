@@ -134,4 +134,23 @@ import android.widget.TextView;
 						       
 					
 		}
+					
+					public void goHome(View view) {
+						setContentView(R.layout.add_tasks);
+						Button home;
+						home = (Button) findViewById(R.id.home);
+						
+						home.setOnClickListener(new View.OnClickListener() {
+
+							@Override
+							public void onClick(View v) {
+								// TODO Auto-generated method stub
+								
+								setContentView(R.layout.welcome_screen);
+								
+							}
+					
+						
+					});
+					}
 }
