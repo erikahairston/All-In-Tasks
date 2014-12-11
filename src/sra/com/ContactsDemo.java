@@ -36,17 +36,10 @@ import android.widget.TextView;
 	public void makeNewGroup(View view){ // from the home screen when you click on Make New Group Button
 		setContentView(R.layout.new_group);
 	}
-	
-	Button group = null;
-
-	group.setOnClickListener(
-			new View.OnClickListener()
-			{
-				public void onClick(View view)
-				{
-					setContentView(R.layout.group);
-				}
-			});
+		
+	public void groupPage (View view){ // from the home screen when you click on Make New Group Button
+			setContentView(R.layout.group);
+	}
 
 	public void saveGroup(View view){
 
