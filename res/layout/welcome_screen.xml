@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Make New Group" 
-         android:onClick="makeNewGroup"/>
+        android:onClick="makeNewGroup"/>
 
     <TextView
         android:id="@+id/output"
@@ -32,5 +32,11 @@
         android:text="[group name here]"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
+    <Button
+        android:id="@+id/group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Group" 
+        android:onClick="groupPage"/>
     
 </LinearLayout>
