@@ -58,24 +58,43 @@ import android.widget.TextView;
 
 
 		Save.setOnClickListener(new View.OnClickListener()
-		{  //turning input into String
-			public void onClick(View v) 
-			{
-				group_name = (EditText)findViewById(R.id.group_name);
-				current_date = (EditText)findViewById(R.id.current_date); 
-				due_date = (EditText)findViewById(R.id.due_date);
-				num_attendees = (EditText)findViewById(R.id.attendees);
+		{
 
-				String GroupName = group_name.getText().toString();
-				String CurrentDate = current_date.getText().toString();
-				String DueDate = due_date.getText().toString();
-				String NumAttendees = num_attendees.getText().toString();
-				testPrint= (TextView)findViewById(R.id.printOut);
-				testPrint.setText("Welcome " + GroupName);  //need to print this home screen
-			}
-		});
+        @Override
+        public void onClick(View arg0) {
+            String ButtonText = Save.getText().toString();
+            
+            if(ButtonText.equals("Save"))
+            {
+            	group_name = (EditText)findViewById(R.id.group_name);
+	    	    current_date = (EditText)findViewById(R.id.current_date); 
+	    	    due_date = (EditText)findViewById(R.id.due_date);
+	    	    num_attendees = (EditText)findViewById(R.id.attendees);
+	    	
+	    	    String GroupName = group_name.getText().toString();
+	            String CurrentDate = current_date.getText().toString();
+	            String DueDate = due_date.getText().toString();
+	            String NumAttendees = num_attendees.getText().toString();
+	            testPrint= (TextView)findViewById(R.id.printOut);
+	            testPrint.setText("Welcome " + GroupName);  //need to print this home screen
+	            Button button = (Button) findViewById(R.id.Save);
+	            button.setText("Assign Tasks");
+            }
+            else
+            {
+                //code for move to next screen 
+            	setContentView(R.layout.add_tasks);
+                
+            }
+        }
+
+    });
+
+};
+
 		//setContentView(R.layout.add_tasks); (need to re-implement this to a new button)
-	}
+	
+
 	public void contact(View v){
 		setContentView(R.layout.pick_contact_button_screen);
 		mBtnContacts = (Button) findViewById(R.id.xBtnContacts);
