@@ -8,6 +8,7 @@ import android.widget.EditText;
 public class MakeNewGroup 
 {
 	
+	
 	@SuppressWarnings("null")
 	public void Save ()
 	{

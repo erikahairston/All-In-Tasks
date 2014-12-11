@@ -7,24 +7,67 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.provider.Contacts.People;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.content.ContentResolver;
+import android.widget.EditText;
 import android.widget.TextView;
 
 @SuppressWarnings("deprecation")
 @SuppressLint("NewApi") public class ContactsDemo extends Activity implements OnClickListener {
 	private Button mBtnContacts;
 	private final int PICK = 1;
+	Button Save;
+	 EditText group_name;
+	 EditText current_date;
+	 EditText due_date;
+	 EditText num_attendees;
+	 TextView testPrint; 
 
 	/** Called when the activity is first created. */
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) { //set to home screen when app starts
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.welcome_screen);
+		
+	}
+	public void makeNewGroup(View view){ // from the home screen when you click on Make New Group Button
+		setContentView(R.layout.new_group);
+	}
+	
+	public void saveGroup(View view){
+	    
+		group_name = (EditText)findViewById(R.id.group_name);
+	    
+	    current_date = (EditText)findViewById(R.id.current_date);
+	    
+	    due_date = (EditText)findViewById(R.id.due_date);
+	    num_attendees = (EditText)findViewById(R.id.attendees);
+	    
+	    Save = (Button) findViewById(R.id.Save);
+	    
+	    
+	    Save.setOnClickListener(new View.OnClickListener()
+	    {  //turning input into String
+	    	public void onClick(View v) 
+	    	{
+	    		group_name = (EditText)findViewById(R.id.group_name);
+	    	    current_date = (EditText)findViewById(R.id.current_date); 
+	    	    due_date = (EditText)findViewById(R.id.due_date);
+	    	    num_attendees = (EditText)findViewById(R.id.attendees);
+	    	
+	    	    String GroupName = group_name.getText().toString();
+	            String CurrentDate = current_date.getText().toString();
+	            String DueDate = due_date.getText().toString();
+	            String NumAttendees = num_attendees.getText().toString();
+	            testPrint= (TextView)findViewById(R.id.printOut);
+	            testPrint.setText("Welcome " + GroupName);  //need to print this home screen
+	    	}
+	    });
+		//setContentView(R.layout.add_tasks); (need to re-implement this to a new button)
+	}
+	public void contact(View v){
+		setContentView(R.layout.pick_contact_button_screen);
 		mBtnContacts = (Button) findViewById(R.id.xBtnContacts);
 		mBtnContacts.setOnClickListener(this);
 	}
