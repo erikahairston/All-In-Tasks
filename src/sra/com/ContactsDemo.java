@@ -7,12 +7,14 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.parse.Parse;
+import com.parse.ParseObject;
 
 @SuppressWarnings("deprecation")
 @SuppressLint("NewApi") public class ContactsDemo extends Activity implements OnClickListener {
@@ -30,7 +32,8 @@ import android.widget.TextView;
 	public void onCreate(Bundle savedInstanceState) { //set to home screen when app starts
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.welcome_screen);
-
+		Parse.initialize(this, "9ElTR1rwUrD5ZOThF141JjqXzeXQmVmhXUX4GrxC", "b2ZyuDfh8Vn0uSf9U5ypVcamwU7J14M5xCfMc6fx");
+		Parse.enableLocalDatastore(getApplicationContext());
 	}
 
 	public void makeNewGroup(View view){ // from the home screen when you click on Make New Group Button
@@ -50,15 +53,11 @@ import android.widget.TextView;
 	public void saveGroup(View view){
 
 		group_name = (EditText)findViewById(R.id.group_name);
-
 		current_date = (EditText)findViewById(R.id.current_date);
-
 		due_date = (EditText)findViewById(R.id.due_date);
 		num_attendees = (EditText)findViewById(R.id.attendees);
 
 		Save = (Button) findViewById(R.id.Save);
-
-
 		Save.setOnClickListener(new View.OnClickListener()
 		{
 
@@ -77,8 +76,17 @@ import android.widget.TextView;
 	            String CurrentDate = current_date.getText().toString();
 	            String DueDate = due_date.getText().toString();
 	            String NumAttendees = num_attendees.getText().toString();
-	            testPrint= (TextView)findViewById(R.id.printOut);
-	            testPrint.setText("Welcome " + GroupName);  //need to print this home screen
+	            //testPrint= (TextView)findViewById(R.id.printOut);
+	            //testPrint.setText("Welcome " + GroupName);  //need to print this home screen
+	            
+	            
+	            ParseObject group = new ParseObject("Group");
+	            group.put("group name", GroupName);
+	            group.put("current_date", CurrentDate);
+	            group.put("due_date", CurrentDate);
+	            group.put("num_attendees", NumAttendees);
+	            group.saveInBackground(); 
+	            
 	            Button button = (Button) findViewById(R.id.Save);
 	            button.setText("Assign Tasks");
             }
@@ -158,7 +166,7 @@ import android.widget.TextView;
 						                    while (phoneCursor.moveToNext()) {
 						                        phoneNumber = phoneCursor.getString(phoneCursor.getColumnIndex(NUMBER));
 						                        output.append("\n Phone number:" + phoneNumber);
-<<<<<<< Updated upstream
+
 		 */
 
 
