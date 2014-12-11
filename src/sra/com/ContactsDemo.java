@@ -11,10 +11,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.parse.Parse;
-import com.parse.ParseObject;
 
 @SuppressWarnings("deprecation")
 @SuppressLint("NewApi") public class ContactsDemo extends Activity implements OnClickListener {
@@ -26,84 +24,123 @@ import com.parse.ParseObject;
 	EditText due_date;
 	EditText num_attendees;
 	TextView testPrint; 
+	String numAttendees = new String ();
+	int numAttendees1 = 0; 
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) { //set to home screen when app starts
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.welcome_screen);
-		Parse.initialize(this, "9ElTR1rwUrD5ZOThF141JjqXzeXQmVmhXUX4GrxC", "b2ZyuDfh8Vn0uSf9U5ypVcamwU7J14M5xCfMc6fx");
-		Parse.enableLocalDatastore(getApplicationContext());
+
 	}
 
 	public void makeNewGroup(View view){ // from the home screen when you click on Make New Group Button
 		setContentView(R.layout.new_group);
 	}
-		
+
 	public void groupPage (View view)
 	{
 		setContentView(R.layout.group);
 	}
-			
+
 	public void Home (View view)
 	{
 		setContentView(R.layout.welcome_screen);
 	}
 
-	public void saveGroup(View view){
-
+	//public void saveGroup(View view){
+		public int saveGroup() {
 		group_name = (EditText)findViewById(R.id.group_name);
 		current_date = (EditText)findViewById(R.id.current_date);
 		due_date = (EditText)findViewById(R.id.due_date);
 		num_attendees = (EditText)findViewById(R.id.attendees);
 
 		Save = (Button) findViewById(R.id.Save);
-		Save.setOnClickListener(new View.OnClickListener()
+
+		//Save.setOnClickListener(new View.OnClickListener()
 		{
 
-        @Override
-        public void onClick(View arg0) {
-            String ButtonText = Save.getText().toString();
-            
-            if(ButtonText.equals("Save"))
-            {
-            	group_name = (EditText)findViewById(R.id.group_name);
-	    	    current_date = (EditText)findViewById(R.id.current_date); 
-	    	    due_date = (EditText)findViewById(R.id.due_date);
-	    	    num_attendees = (EditText)findViewById(R.id.attendees);
-	    	
-	    	    String GroupName = group_name.getText().toString();
-	            String CurrentDate = current_date.getText().toString();
-	            String DueDate = due_date.getText().toString();
-	            String NumAttendees = num_attendees.getText().toString();
-	            //testPrint= (TextView)findViewById(R.id.printOut);
-	            //testPrint.setText("Welcome " + GroupName);  //need to print this home screen
-	            
-	            
-	            ParseObject group = new ParseObject("Group");
-	            group.put("group name", GroupName);
-	            group.put("current_date", CurrentDate);
-	            group.put("due_date", CurrentDate);
-	            group.put("num_attendees", NumAttendees);
-	            group.saveInBackground(); 
-	            
-	            Button button = (Button) findViewById(R.id.Save);
-	            button.setText("Assign Tasks");
-            }
-            else
-            {
-                //code for move to next screen 
-            	setContentView(R.layout.add_tasks);
-                
-            }
-        }
+			//@Override
+			//public void onClick(View view) { //saves the inputted text in the Group
+				
+				String ButtonText = Save.getText().toString();
 
-    });
+				System.out.println ("test5");
+				group_name = (EditText)findViewById(R.id.group_name);
+				current_date = (EditText)findViewById(R.id.current_date); 
+				due_date = (EditText)findViewById(R.id.due_date);
+				num_attendees = (EditText)findViewById(R.id.attendees);
 
-};
+				String GroupName = group_name.getText().toString();
+				String CurrentDate = current_date.getText().toString();
+				String DueDate = due_date.getText().toString();
+				String numAttendees = num_attendees.getText().toString();
+				//int numAttendees1 = Integer.parseInt(numAttendees);
+				testPrint= (TextView)findViewById(R.id.printOut);
+				testPrint.setText("Welcome " + GroupName);  //need to print this home screen
+				Button button = (Button) findViewById(R.id.Save);
+				if(numAttendees!=null){
+					int numAttendees1 = Integer.parseInt(numAttendees);
+				}
+				else{
+					numAttendees1 =0;
+				}
+				
+				return numAttendees1;
+				}
+		}
+		
+		
+		
+	 public void buttonLoop (View view)
+	 {
+		 	//int numberAttendees = Integer.parseInt(numAttendees);
+	    	Button AssignTasks;
+	    	AssignTasks = (Button) findViewById(R.id.assignTasks);
 
-		//setContentView(R.layout.add_tasks); (need to re-implement this to a new button)
+	    	 Button[] btnArray = new Button[numAttendees1];
+	         EditText[] textArray = new EditText[numAttendees1];
+	         TextView[] viewArray = new TextView[numAttendees1];
+
+	        //makes new layout
+
+	            LinearLayout myLayout = new LinearLayout(this);
+
+	            LinearLayout.LayoutParams buttonParams = 
+	                    new LinearLayout.LayoutParams(
+	                        LinearLayout.LayoutParams.WRAP_CONTENT, 
+	                        LinearLayout.LayoutParams.WRAP_CONTENT);
+
+	         myLayout.setOrientation(LinearLayout.VERTICAL);
+
+	           //creates specified number of buttons, edit text and text view
+	         System.out.println ("test");
+	            for(int i=0;i<numAttendees1;i++){
+	                btnArray[i]=new Button(this);
+	                btnArray[i].setId(i);
+	                btnArray[i].setText("Attendee "+ (i+1));
+	                myLayout.addView(btnArray[i]);
+
+	                System.out.println ("test1");
+
+	                textArray[i]=new EditText(this);
+	                textArray[i].setId(i);
+	                myLayout.addView(textArray[i]);
+
+	                viewArray[i]=new TextView(this);
+	                viewArray[i].setId(i);
+	                viewArray[i].setText("Lovechild "+ (i+1));
+	                myLayout.addView(viewArray[i]);
+	       }
+	            setContentView(myLayout);
+	            System.out.println ("test2");   
+	 }
+
 	
+
+	//setContentView(R.layout.add_tasks); (need to re-implement this to a new button)
+
 
 	public void contact(View v){
 		setContentView(R.layout.pick_contact_button_screen);
@@ -166,7 +203,6 @@ import com.parse.ParseObject;
 						                    while (phoneCursor.moveToNext()) {
 						                        phoneNumber = phoneCursor.getString(phoneCursor.getColumnIndex(NUMBER));
 						                        output.append("\n Phone number:" + phoneNumber);
-
 		 */
 
 
@@ -201,14 +237,7 @@ import com.parse.ParseObject;
 					public void onClick(View view)
 					{
 						setContentView(R.layout.group);
-						                    
-						                
-						            
-						       
-					
-		}
-			
-					
+					}
 				});
 
 
