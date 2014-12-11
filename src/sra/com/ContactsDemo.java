@@ -158,6 +158,7 @@ import android.widget.TextView;
 						                    while (phoneCursor.moveToNext()) {
 						                        phoneNumber = phoneCursor.getString(phoneCursor.getColumnIndex(NUMBER));
 						                        output.append("\n Phone number:" + phoneNumber);
+<<<<<<< Updated upstream
 		 */
 
 
@@ -169,7 +170,7 @@ import android.widget.TextView;
 	public void goHome(View view) {
 		setContentView(R.layout.add_tasks);
 		Button home;
-		home = (Button) findViewById(R.id.home);
+		home = (Button) findViewById(R.id.Home);
 
 		home.setOnClickListener(new View.OnClickListener() {
 
@@ -192,7 +193,14 @@ import android.widget.TextView;
 					public void onClick(View view)
 					{
 						setContentView(R.layout.group);
-					}
+						                    
+						                
+						            
+						       
+					
+		}
+			
+					
 				});
 
 
