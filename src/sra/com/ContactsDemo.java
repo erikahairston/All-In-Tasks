@@ -37,12 +37,14 @@ import android.widget.TextView;
 		setContentView(R.layout.new_group);
 	}
 		
-	public void groupPage (View view){ // from the home screen when you click on Make New Group Button
-			setContentView(R.layout.group);
+	public void groupPage (View view)
+	{
+		setContentView(R.layout.group);
 	}
 			
-	public void Home (View view){ // from the home screen when you click on Make New Group Button
-				setContentView(R.layout.welcome_screen);
+	public void Home (View view)
+	{
+		setContentView(R.layout.welcome_screen);
 	}
 
 	public void saveGroup(View view){
