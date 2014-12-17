@@ -63,13 +63,6 @@
         android:layout_height="wrap_content"
         android:onClick="saveGroup"
         android:text="Save" />
-    
-    <Button
-        android:id="@+id/assignTasks"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="buttonLoop"
-        android:text="Assign Tasks" />
 
     <TextView
         android:id="@+id/textView4"
@@ -78,11 +71,11 @@
         android:text=""
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <TextView
-        android:id="@+id/printOut"
-        android:layout_width="222dp"
+     <Button
+        android:id="@+id/Home"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="0.36"
-        android:text="TextView" />
+        android:text="Home" 
+        android:onClick="Home"/>
 
 </LinearLayout>

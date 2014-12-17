@@ -1,5 +1,7 @@
 package sra.com;
 
+import java.util.List;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -26,7 +28,11 @@ import com.parse.*;
 
 	String phone = "";
 	String name = "";
+	String summaryOfGroup = "";
 	private Button mBtnContacts;
+	private Button mBtnContacts1;
+	private Button mBtnContacts2;
+	private Button mBtnContacts3;
 	private final int PICK = 1;
 	Button Save;
 	EditText group_name;
@@ -34,6 +40,8 @@ import com.parse.*;
 	EditText due_date;
 	EditText num_attendees;
 	TextView testPrint; 
+	int numAttendees =5;
+	
 
 	/** Called when the activity is first created. */
 	@Override
@@ -79,24 +87,25 @@ import com.parse.*;
 				if(ButtonText.equals("Save"))
 				{
 					group_name = (EditText)findViewById(R.id.group_name);
-					//current_date = (EditText)findViewById(R.id.current_date); 
+					current_date = (EditText)findViewById(R.id.current_date); 
 					due_date = (EditText)findViewById(R.id.due_date);
 					num_attendees = (EditText)findViewById(R.id.attendees);
 
 					String GroupName = group_name.getText().toString();
-					//String CurrentDate = current_date.getText().toString();
-					//String DueDate = due_date.getText().toString();
+					String CurrentDate = current_date.getText().toString();
+					String DueDate = due_date.getText().toString();
 					String NumAttendees = num_attendees.getText().toString();
 					
 					
-					//pushing inputed into Parse
+					/*pushing inputed into Parse
 					groupInfo.put("GroupName", GroupName);
 					groupInfo.put("NumAttendees", NumAttendees);
-					//groupInfo.put("phone", phone);
-					groupInfo.saveInBackground();
+					groupInfo.put("phone", phone);
+					groupInfo.saveInBackground();*/
 					
+					//summaryOfGroup = ("Welcome " + GroupName + "these tasks are due" + DueDate);
 					//testPrint= (TextView)findViewById(R.id.printOut);
-					//testPrint.setText("Welcome " + GroupName);  //need to print this home screen
+					//testPrint.setText(summaryOfGroup);  //wish to print this home screen
 					
 					
 					Button button = (Button) findViewById(R.id.Save);
@@ -107,7 +116,6 @@ import com.parse.*;
 					//code for move to next screen 
 					setContentView(R.layout.pick_contact_button_screen);
 
-
 				}
 			}
 
@@ -115,13 +123,18 @@ import com.parse.*;
 
 	};
 
-	//setContentView(R.layout.add_tasks); (need to re-implement this to a new button)
-
-
 	public void contact(View v){
-		//setContentView(R.layout.pick_contact_button_screen);
 		mBtnContacts = (Button) findViewById(R.id.xBtnContacts);
 		mBtnContacts.setOnClickListener(this);
+		
+		mBtnContacts1 = (Button) findViewById(R.id.Button01);
+		mBtnContacts1.setOnClickListener(this);
+		
+		mBtnContacts2 = (Button) findViewById(R.id.Button02);
+		mBtnContacts2.setOnClickListener(this);
+		
+		mBtnContacts3 = (Button) findViewById(R.id.Button05);
+		mBtnContacts3.setOnClickListener(this);
 		Intent intent = new Intent(Intent.ACTION_PICK,
 				ContactsContract.Contacts.CONTENT_URI);
 		startActivityForResult(intent, PICK);
@@ -205,8 +218,20 @@ import com.parse.*;
 
 			}
 		}
-		smsInfo.put("phone", phone);
-		smsInfo.saveInBackground();
+		//smsInfo.put("phone", phone);
+		//smsInfo.saveInBackground();
+		ParseQuery<ParseObject> query = ParseQuery.getQuery("phone");
+	      query.whereEqualTo("Erika Hairton", name);
+
+	      query.findInBackground(new FindCallback<ParseObject>() {
+	        public void done(List<ParseObject> phone2, ParseException e) {
+	          // commentList now has the comments for myPost
+	        	Toast.makeText(getApplicationContext(),
+	    				phone2 + "hey",
+	    				Toast.LENGTH_LONG).show();
+	        	System.out.println(phone2 + "hey");
+	        }
+	      });
 	}
 
 	
@@ -271,18 +296,8 @@ import com.parse.*;
 					public void onClick(View view)
 					{
 						setContentView(R.layout.group);
-
-
-
-
-
 					}
-
-
 				});
-
-
-
 	}
 }
 
