@@ -19,13 +19,14 @@ public final class R {
         public static final int assignTasks=0x7f05000c;
         public static final int attendee1=0x7f050001;
         public static final int attendees=0x7f050008;
+        public static final int button1=0x7f05000f;
         public static final int current_date=0x7f050006;
         public static final int due_date=0x7f050007;
         public static final int editText1=0x7f050002;
-        public static final int group=0x7f050011;
+        public static final int group=0x7f050012;
         public static final int group_name=0x7f050005;
-        public static final int makenewgroup=0x7f05000f;
-        public static final int output=0x7f050010;
+        public static final int makenewgroup=0x7f050010;
+        public static final int output=0x7f050011;
         public static final int printOut=0x7f05000e;
         public static final int textView1=0x7f050000;
         public static final int textView2=0x7f050009;
