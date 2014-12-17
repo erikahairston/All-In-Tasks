@@ -40,7 +40,12 @@ import com.parse.*;
 	EditText due_date;
 	EditText num_attendees;
 	TextView testPrint; 
-	int numAttendees =5;
+	int numAttendees = 4; 
+	String phone1 = "";
+	String phone2 = "";
+	String phone3 = "";
+	String phone4 = "";
+	String message = "";
 	
 
 	/** Called when the activity is first created. */
@@ -185,7 +190,6 @@ import com.parse.*;
 							{
 								try
 								{
-									phone = ""; //resets the phone number after each click
 									//getting the actual phone number to read into String phone
 									phone = phone + pCur.getString(pCur.getColumnIndex(ContactsContract.Contacts.Data.DATA1)) + ",";
 									
@@ -206,6 +210,22 @@ import com.parse.*;
 								System.out.println(phone);
 							}
 						}
+						if (phone.length() == 10){
+						
+							phone1 = phone.substring(0,10);
+						}
+						if (phone.length() == 20){
+						
+							phone2 = phone.substring(10,20);
+						}
+						if (phone.length() == 30){
+
+						phone3 = phone.substring(20,30);
+						}
+						if (phone.length() == 40){
+
+						phone4 = phone.substring(30,40);
+						}
 						
 					}
 					
@@ -218,9 +238,11 @@ import com.parse.*;
 
 			}
 		}
+		//the following two lines saved the attendee's number to the column phone in parse
 		//smsInfo.put("phone", phone);
 		//smsInfo.saveInBackground();
-		ParseQuery<ParseObject> query = ParseQuery.getQuery("phone");
+		//this was one of our attempts to pull data from parse
+		/*ParseQuery<ParseObject> query = ParseQuery.getQuery("phone");
 	      query.whereEqualTo("Erika Hairton", name);
 
 	      query.findInBackground(new FindCallback<ParseObject>() {
@@ -232,11 +254,55 @@ import com.parse.*;
 	        	System.out.println(phone2 + "hey");
 	        }
 	      });
+	      */
 	}
 
 	
-	
 	public void SMS (String phone, String message){
+		EditText task1 = (EditText)findViewById(R.id.editText1);
+		EditText task2 = (EditText)findViewById(R.id.editText2);
+		EditText task3 = (EditText)findViewById(R.id.editText3);
+		EditText task4 = (EditText)findViewById(R.id.editText4);
+
+		String message1 = task1.getText().toString();
+		String message2 = task2.getText().toString();
+		String message3 = task3.getText().toString();
+		String message4 = task4.getText().toString();
+		
+	for (int x = 1; x <= 4; x++){
+		
+		if (x == 1){
+			message = message1;
+			phone = phone1;
+			System.out.println(message);
+			System.out.println(phone);
+			System.out.println(message1);
+			System.out.println(phone1);
+		}
+		if(x == 2){
+			message = message2;
+			phone = phone2;
+			System.out.println(message);
+			System.out.println(phone);
+			System.out.println(message2);
+			System.out.println(phone2);
+		}
+		if(x == 3){
+			message = message3;
+			phone = phone3;
+			System.out.println(message);
+			System.out.println(phone);
+			System.out.println(message3);
+			System.out.println(phone3);
+		}
+		if (x == 4){
+			message = message4;
+			phone = phone4;
+			System.out.println(message);
+			System.out.println(phone);
+			System.out.println(message4);
+			System.out.println(phone4);
+		}
 		try {
 			// calling the smsManager
 			SmsManager smsManager = SmsManager.getDefault();
@@ -253,6 +319,7 @@ import com.parse.*;
 			e.printStackTrace();
 		}
 	}
+	}
 
 	public void sendSMSButton(View view) {
 		Button sendSMS;
@@ -263,7 +330,6 @@ import com.parse.*;
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				String message = "Hi there!";
 				
 				SMS(phone, message);
 			}
