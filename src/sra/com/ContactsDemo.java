@@ -32,7 +32,7 @@ import com.parse.ParseObject;
 	public void onCreate(Bundle savedInstanceState) { //set to home screen when app starts
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.welcome_screen);
-		Parse.initialize(this, "9ElTR1rwUrD5ZOThF141JjqXzeXQmVmhXUX4GrxC", "b2ZyuDfh8Vn0uSf9U5ypVcamwU7J14M5xCfMc6fx");
+		Parse.initialize(this, "PEzHL5eKDrwO3r2ZDSqfiolgB2Ofl6I65ZpemYBT", "eRNfiouDMrcpkuLX5UI0Wyl07F5xMT8GxlH7lLp0");
 		Parse.enableLocalDatastore(getApplicationContext());
 	}
 
@@ -81,11 +81,12 @@ import com.parse.ParseObject;
 	            
 	            
 	            ParseObject group = new ParseObject("Group");
-	            group.put("group name", GroupName);
+	            group.put("group_name", GroupName);
 	            group.put("current_date", CurrentDate);
 	            group.put("due_date", CurrentDate);
 	            group.put("num_attendees", NumAttendees);
 	            group.saveInBackground(); 
+	            
 	            
 	            Button button = (Button) findViewById(R.id.Save);
 	            button.setText("Assign Tasks");
@@ -215,3 +216,5 @@ import com.parse.ParseObject;
 
 	}
 }
+
+//http://stackoverflow.com/questions/14376807/how-to-read-write-string-from-a-file-in-android
