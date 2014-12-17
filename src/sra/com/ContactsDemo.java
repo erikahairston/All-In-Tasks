@@ -21,6 +21,7 @@ import com.parse.*;
 
 @SuppressWarnings("deprecation")
 @SuppressLint("NewApi") public class ContactsDemo extends Activity implements OnClickListener {
+	ParseObject groupInfo = new ParseObject("groupInfo");
 	private Button mBtnContacts;
 	private final int PICK = 1;
 	Button Save;
@@ -74,16 +75,25 @@ import com.parse.*;
 				if(ButtonText.equals("Save"))
 				{
 					group_name = (EditText)findViewById(R.id.group_name);
-					current_date = (EditText)findViewById(R.id.current_date); 
-					due_date = (EditText)findViewById(R.id.due_date);
+					//current_date = (EditText)findViewById(R.id.current_date); 
+					//due_date = (EditText)findViewById(R.id.due_date);
 					num_attendees = (EditText)findViewById(R.id.attendees);
 
 					String GroupName = group_name.getText().toString();
-					String CurrentDate = current_date.getText().toString();
-					String DueDate = due_date.getText().toString();
+					//String CurrentDate = current_date.getText().toString();
+					//String DueDate = due_date.getText().toString();
 					String NumAttendees = num_attendees.getText().toString();
-					testPrint= (TextView)findViewById(R.id.printOut);
-					testPrint.setText("Welcome " + GroupName);  //need to print this home screen
+					
+					
+					//pushing inputed into Parse
+					groupInfo.put("GroupName", GroupName);
+					groupInfo.put("NumAttendees", NumAttendees);
+					groupInfo.saveInBackground();
+					
+					//testPrint= (TextView)findViewById(R.id.printOut);
+					//testPrint.setText("Welcome " + GroupName);  //need to print this home screen
+					
+					
 					Button button = (Button) findViewById(R.id.Save);
 					button.setText("Assign Tasks");
 				}
