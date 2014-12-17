@@ -22,7 +22,7 @@
         <requestFocus />
     </EditText>
     <ScrollView android:id="@+id/scrollView1" android:layout_width="match_parent" android:layout_height="wrap_content">
-        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical"></LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"></LinearLayout>
     </ScrollView>
 
     <Button
@@ -30,7 +30,7 @@
         android:layout_width="139dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="0dp"
         android:onClick="contact"
         android:text="Attendee2" />
 
@@ -45,7 +45,7 @@
         android:layout_width="139dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="0dp"
         android:onClick="contact"
         android:text="Attendee3" />
 
@@ -60,7 +60,7 @@
         android:layout_width="139dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="0dp"
         android:onClick="contact"
         android:text="Attendee4" />
 
@@ -71,29 +71,20 @@
         android:ems="10" />
 
     <Button
+        android:id="@+id/home"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Home" 
+        android:onClick="Home"/>
+
+    <Button
         android:id="@+id/sendSMS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="0dp"
         android:onClick="sendSMSButton"
         android:text="Send SMS" />
-
-    <Button
-        android:id="@+id/Home"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginTop="330dp"
-        android:onClick="Home"
-        android:text="Home" />
-
-    <Button
-        android:id="@+id/Button04"
-        android:layout_width="139dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:onClick="contact"
-        android:text="Attendee 1" />
 
 </LinearLayout>

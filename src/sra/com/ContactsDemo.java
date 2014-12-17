@@ -201,6 +201,8 @@ import com.parse.*;
 								}
 							} 
 							pCur.close();
+							Toast.makeText(getApplicationContext(), name + " selected",
+									Toast.LENGTH_LONG).show();
 							if(phone.length() > 0)
 							{
 								//getting rid of the comma on the end
