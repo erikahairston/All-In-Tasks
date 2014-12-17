@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.*;
 
 @SuppressWarnings("deprecation")
 @SuppressLint("NewApi") public class ContactsDemo extends Activity implements OnClickListener {
@@ -34,6 +35,10 @@ import android.widget.Toast;
 	public void onCreate(Bundle savedInstanceState) { //set to home screen when app starts
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.welcome_screen);
+		// Enable Local Datastore.
+		Parse.enableLocalDatastore(this);
+		Parse.initialize(this, "lF24JPvwrScO4guu4ZOWTgkQyQkOoS1iLarv99AL", "PFnvzzENsvJj6k5JxMV2WZvZfyWPADR0zvEZDILs");
+
 
 	}
 
@@ -193,16 +198,12 @@ import android.widget.Toast;
 						Toast.makeText(getApplicationContext(), "No name selected", Toast.LENGTH_LONG).show();
 					}
 				}
-				String message = "Hi there!";
-
-				SMS(phone, message);
+				
 
 			}
 		}
 
 	}
-
-
 
 
 	public void SMS (String phone, String message){
@@ -223,6 +224,23 @@ import android.widget.Toast;
 		}
 	}
 
+	public void sendSMSButton(View view) {
+		Button sendSMS;
+		sendSMS= (Button) findViewById(R.id.sendSMS);
+		
+		sendSMS.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				String message = "Hi there!";
+				String phone = "";
+				
+				SMS(phone, message);
+			}
+		});
+	}
+	
 	public void goHome(View view) {
 		setContentView(R.layout.add_tasks);
 		Button home;
@@ -263,3 +281,4 @@ import android.widget.Toast;
 
 	}
 }
+
