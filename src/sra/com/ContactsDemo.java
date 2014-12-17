@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.parse.Parse;
 import com.parse.ParseObject;
+import com.parse.*;
 
 @SuppressWarnings("deprecation")
 @SuppressLint("NewApi") public class ContactsDemo extends Activity implements OnClickListener {
