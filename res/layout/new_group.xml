@@ -63,6 +63,13 @@
         android:layout_height="wrap_content"
         android:onClick="saveGroup"
         android:text="Save" />
+    
+    <Button
+        android:id="@+id/assignTasks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="buttonLoop"
+        android:text="Assign Tasks" />
 
     <TextView
         android:id="@+id/textView4"
