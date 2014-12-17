@@ -122,11 +122,12 @@ import com.parse.*;
 		// calling OnActivityResult with intent And Some contact for identifier
 		startActivityForResult(intent, PICK);
 	}
+	String phone = "";
+
 
 	@Override
 	public void onActivityResult(int reqCode, int resultCode, Intent data) {
 		super.onActivityResult(reqCode, resultCode, data);
-		String phone = "";
 		final String PREFS_NAME = "MyApp_Settings";
 		switch (reqCode) {
 		//what is called when you select a contact
@@ -169,6 +170,7 @@ import com.parse.*;
 							{
 								try
 								{
+									phone = ""; //resets the phone number after each click
 									//getting the actual phone number to read into String phone
 									phone = phone + pCur.getString(pCur.getColumnIndex(ContactsContract.Contacts.Data.DATA1)) + ",";
 								}
@@ -234,7 +236,6 @@ import com.parse.*;
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				String message = "Hi there!";
-				String phone = "";
 				
 				SMS(phone, message);
 			}
