@@ -22,6 +22,10 @@ import com.parse.*;
 @SuppressWarnings("deprecation")
 @SuppressLint("NewApi") public class ContactsDemo extends Activity implements OnClickListener {
 	ParseObject groupInfo = new ParseObject("groupInfo");
+	ParseObject smsInfo = new ParseObject("smsInfo");
+
+	String phone = "";
+	String name = "";
 	private Button mBtnContacts;
 	private final int PICK = 1;
 	Button Save;
@@ -76,7 +80,7 @@ import com.parse.*;
 				{
 					group_name = (EditText)findViewById(R.id.group_name);
 					//current_date = (EditText)findViewById(R.id.current_date); 
-					//due_date = (EditText)findViewById(R.id.due_date);
+					due_date = (EditText)findViewById(R.id.due_date);
 					num_attendees = (EditText)findViewById(R.id.attendees);
 
 					String GroupName = group_name.getText().toString();
@@ -88,6 +92,7 @@ import com.parse.*;
 					//pushing inputed into Parse
 					groupInfo.put("GroupName", GroupName);
 					groupInfo.put("NumAttendees", NumAttendees);
+					//groupInfo.put("phone", phone);
 					groupInfo.saveInBackground();
 					
 					//testPrint= (TextView)findViewById(R.id.printOut);
@@ -132,7 +137,6 @@ import com.parse.*;
 		// calling OnActivityResult with intent And Some contact for identifier
 		startActivityForResult(intent, PICK);
 	}
-	String phone = "";
 
 
 	@Override
@@ -153,20 +157,8 @@ import com.parse.*;
 						//getting the display name to read into String name
 						String id = c.getString(c.getColumnIndex(ContactsContract.Contacts._ID));
 						String name = c.getString(c.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
-						SharedPreferences settings = getApplicationContext().getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-						SharedPreferences.Editor editor = settings.edit();
-						//stores string
-						String GroupA = "Group A:";
-						editor.putString(GroupA, name);
-						//Apply the edits!
-						editor.apply();
-						//access stored string
-						String name1 = settings.getString(GroupA, "");
-						String name2 = settings.getString("", "");
-						name2 = (name1 + "" + name2);
-						editor.putString("name2:", name2);
-						//Apply the edits!
-						editor.apply();
+						smsInfo.put("name", name);
+						smsInfo.saveInBackground();
 
 
 						if (Integer.parseInt(c.getString(c.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) 
@@ -183,6 +175,7 @@ import com.parse.*;
 									phone = ""; //resets the phone number after each click
 									//getting the actual phone number to read into String phone
 									phone = phone + pCur.getString(pCur.getColumnIndex(ContactsContract.Contacts.Data.DATA1)) + ",";
+									
 								}
 								catch(Exception ex)
 								{
@@ -195,16 +188,14 @@ import com.parse.*;
 							{
 								//getting rid of the comma on the end
 								phone = phone.substring(0,phone.length()-1);
-								//stores string
-								editor.putString("number:", phone);
-								// Apply the edits!
-								editor.apply();
-								//access stored string
-								String number = settings.getString("number:", "");
-								System.out.println(number);
+								//storing phone number in parse
+								
+								System.out.println(phone);
 							}
 						}
+						
 					}
+					
 					catch(Exception ex)
 					{
 						Toast.makeText(getApplicationContext(), "No name selected", Toast.LENGTH_LONG).show();
@@ -214,10 +205,12 @@ import com.parse.*;
 
 			}
 		}
-
+		smsInfo.put("phone", phone);
+		smsInfo.saveInBackground();
 	}
 
-
+	
+	
 	public void SMS (String phone, String message){
 		try {
 			// calling the smsManager
