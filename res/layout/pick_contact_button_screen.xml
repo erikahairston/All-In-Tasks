@@ -6,7 +6,8 @@
 <Button 
     android:layout_width="fill_parent"
 	android:layout_height="wrap_content" android:id="@+id/xBtnContacts"
-	android:text="Pick Contacts" />
+	android:text="Pick Contacts"
+	android:onClick="contact" />
 
 <Button
     android:id="@+id/Home"
